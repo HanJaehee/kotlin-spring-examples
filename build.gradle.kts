@@ -1,21 +1,36 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin("jvm") version "1.9.21"
+    kotlin("jvm") version "1.9.20"
 }
 
-group = "com.hindsight"
-version = "1.0-SNAPSHOT"
+allprojects {
 
-repositories {
-    mavenCentral()
-}
+    apply(plugin = "kotlin")
 
-dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-}
+    group = "com.hindsight"
+    version = "1.0-SNAPSHOT"
 
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs += "-Xjsr305=strict"
+            jvmTarget = "17"
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+
+    kotlin {
+        jvmToolchain(17)
+    }
 }
