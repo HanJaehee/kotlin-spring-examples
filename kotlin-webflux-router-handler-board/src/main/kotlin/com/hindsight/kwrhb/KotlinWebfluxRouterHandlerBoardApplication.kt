@@ -1,4 +1,4 @@
-package com.hindsight.kotlinwebfluxrouterhandler
+package com.hindsight.kwrhb
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
