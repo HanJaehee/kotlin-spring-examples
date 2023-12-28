@@ -1,11 +1,11 @@
-package com.hindsight.kwrhb
+package com.hindsight.board
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KotlinWebfluxRouterHandlerApplication
+class BoardApplication
 
 fun main(args: Array<String>) {
-    runApplication<KotlinWebfluxRouterHandlerApplication>(*args)
+    runApplication<BoardApplication>(*args)
 }

@@ -1,0 +1,15 @@
+### 사용자 생성
+POST {{server_url}}/user
+Content-Type: application/json
+
+{
+  "userId": "testId",
+  "password": "password",
+  "nickname": "nickname",
+  "isAdmin": false
+}
+
+
+### 사용자 조회
+GET {{server_url}}/user/1
+Content-Type: application/json
