@@ -1,5 +1,6 @@
 package com.hindsight.board.domain.user
 
+import com.hindsight.board.util.PasswordUtil
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
@@ -24,7 +25,7 @@ data class User(
     companion object {
         operator fun invoke(createDto: UserDto.Create) = User(
             userId = createDto.userId,
-            password = createDto.password,
+            password = PasswordUtil.hashing(createDto.password),
             nickname = createDto.nickname,
             isAdmin = createDto.isAdmin,
             createdAt = LocalDateTime.now(),
@@ -43,4 +44,8 @@ abstract class UserDto {
         val nickname: String,
         val isAdmin: Boolean
     )
+
+    class Login(val userId: String, password: String) {
+        val password: String = PasswordUtil.hashing(password)
+    }
 }

@@ -14,10 +14,20 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(private val userService: UserService) {
 
     @PostMapping
-    suspend fun create(@RequestBody createDto: UserDto.Create): ResponseEntity<User> =
-        ResponseEntity
-            .status(HttpStatus.CREATED)
-            .body(userService.create(createDto))
+    suspend fun create(@RequestBody createDto: UserDto.Create): ResponseEntity<Unit> =
+        userService.create(createDto).let {
+            ResponseEntity
+                .status(HttpStatus.CREATED)
+                .build()
+        }
+
+    @PostMapping("/login")
+    suspend fun login(@RequestBody loginDto: UserDto.Login): ResponseEntity<User> =
+        userService.login(loginDto = loginDto).let {
+            ResponseEntity
+                .status(HttpStatus.OK)
+                .body(it)
+        }
 
     @GetMapping("/{userId}")
     suspend fun findUserById(@PathVariable userId: Long): ResponseEntity<User> =

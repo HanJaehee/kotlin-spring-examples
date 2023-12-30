@@ -9,6 +9,15 @@ Content-Type: application/json
   "isAdmin": false
 }
 
+### 로그인
+POST {{server_url}}/user/login
+Content-Type: application/json
+
+{
+  "userId": "testId",
+  "password": "password"
+}
+
 
 ### 사용자 조회
 GET {{server_url}}/user/1
